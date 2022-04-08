@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
+import axios from "axios";
 
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
@@ -12,12 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
 import HeroBanner from "./components/HeroBanner";
+import Home from "./pages/Home";
+import DetailsPage from "./pages/DetailsPage";
 
-const Home = () => (
-  <HeroBanner>
-    <h1>Home</h1>
-  </HeroBanner>
-);
 const Other = () => (
   <HeroBanner>
     <h1>Other</h1>
@@ -39,6 +37,7 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route path="/spaces/:id" element={<DetailsPage />} />
         <Route path="/other" element={<Other />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
